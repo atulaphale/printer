@@ -27,6 +27,7 @@
 		<springfox-swagger-ui.version>2.6.1</springfox-swagger-ui.version>
 		<swagger-maven-plugin.version>3.1.7</swagger-maven-plugin.version>
 		<swagger-hibernate-validations.version>1.5.21</swagger-hibernate-validations.version>
+		<jaxb-api.version>2.3.0</jaxb-api.version>
 	</properties>
 
 	<dependencies>
@@ -68,6 +69,11 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${springfox-swagger-ui.version}</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jaxb-api</artifactId>
+				<version>${jaxb-api.version}</version>
 		</dependency>
 
 	</dependencies>
