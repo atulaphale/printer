@@ -2,13 +2,7 @@ package com.cvs.printer.util;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.html.simpleparser.HTMLWorker;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.*;
@@ -23,10 +17,9 @@ public class PdfReport {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         try {
-            PdfWriter.getInstance(document, out);
+            PdfWriter writer = PdfWriter.getInstance(document, out);
             document.open();
-            HTMLWorker htmlWorker = new HTMLWorker(document);
-            htmlWorker.parse(new StringReader(htmlOutput));
+            XMLWorkerHelper.getInstance().parseXHtml(writer, document, new StringReader(htmlOutput));
             document.close();
 
         } catch (DocumentException ex) {
