@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @Api(value="printOptions", description="Operations pertaining to printing application")
+@RequestMapping(path="/api/v1")
 public class PrinterController {
 
     private final AtomicLong counter = new AtomicLong();
@@ -44,7 +45,7 @@ public class PrinterController {
     }
     */
 
-    @ApiOperation(value = "Get the inference report PDF",response = Iterable.class)
+    @ApiOperation(value = "Create the inference report PDF",response = Iterable.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully printed the application"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
@@ -52,7 +53,7 @@ public class PrinterController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
             }
     )
-    @RequestMapping(value = "/print", method = RequestMethod.GET,
+    @RequestMapping(value = "/print", method = RequestMethod.POST,
             produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<InputStreamResource> inferenceReport(@RequestParam(value="htmlContent") String htmlContent){
         long id = counter.incrementAndGet();
